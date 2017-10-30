@@ -1,0 +1,67 @@
+/*SCREAAM master style sheet*/
+
+html {
+    font-size: 16px;
+}
+
+header {
+    display: flex;
+    position: fixed;
+    top:0;
+    height: 109px;
+    width: 100%;
+    background:
+        linear-gradient(0deg, #FFFFFF 0%, #000000 100%),
+        url("../images/Sky_and_trails@2x.png");
+    background-blend-mode: screen;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+footer {
+    display: flex;
+    position: fixed;;
+    height: 301px;
+    width: 100%;
+    bottom: 0;
+    background: url("../images/San_Francisco@2x.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+main {
+    position: relative;
+    margin: 90px 90px 120px 90px;
+
+}
+
+h1 {
+    font-size: 64px;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+    margin-bottom: 32px;
+}
+.h1-sub {
+    font-size: 24px;
+    font-weight: lighter;
+    font-family: sans-serif;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+h2  {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+p {
+    font-family: 18px;
+    font-family: sans-serif;
+    margin-top: 1rem;
+}
