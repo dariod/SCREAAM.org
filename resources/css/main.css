@@ -90,6 +90,12 @@ p {
     main {
         position: relative;
         margin-left: 14%;
+        padding-bottom: 130px;
         width: 72%;
     }
+
+    h1 {
+        font-size: 40px;
+    }
+
 }
