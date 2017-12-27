@@ -29,10 +29,10 @@ footer {
     background-repeat: no-repeat;
 }
 
-
 main {
     position: relative;
-    margin: 90px 90px 120px 90px;
+    margin-left: 25%;
+    width: 50%;
 
 }
 
@@ -64,4 +64,32 @@ p {
     font-family: 18px;
     font-family: sans-serif;
     margin-top: 1rem;
+}
+
+
+#airplane {
+    visibility: hidden;
+    position: fixed;
+    z-index: 1000;
+}
+
+
+
+
+@media only screen and (max-width: 1024px) {
+    main {
+        position: relative;
+        margin-left: 10%;
+        width: 80%;
+    }
+}
+
+
+
+@media only screen and (max-width: 760px) {
+    main {
+        position: relative;
+        margin-left: 3%;
+        width: 94%;
+    }
 }
