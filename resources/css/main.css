@@ -4,8 +4,9 @@
 @font-face {
   font-family: 'Zilla Slab Highlight Bold';
   font-style: normal;
-  font-weight: 600;
-  src: local('Zilla Slab Highlight'), local('ZillaSlabHighlight-Bold'), url(/resources/fonts/Zilla_Slab_Highlight/ZillaSlabHighlight-Bold.ttf);
+  font-weight: 700;
+  src: local('Zilla Slab Highlight Bold'), local('ZillaSlabHighlight-Bold'), url(/resources/fonts/Zilla_Slab_Highlight/ZillaSlabHighlight-Bold.ttf),
+  url(https://fonts.gstatic.com/s/zillaslabhighlight/v3/4GC1z5cbR6tbZfervoVHHOfPT9mhlPVpJN7ce8VxuJ8C1LhKU8qFLLahJuQDJSaO.woff2) format('woff2');;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
 }
 
@@ -50,7 +51,7 @@ main {
 
 h1 {
     font-size: 64px;
-    font-weight: 600;
+    font-weight: 700;
     font-family: 'Zilla Slab Highlight Bold';
     text-align: center;
     margin-bottom: 32px;
