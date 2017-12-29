@@ -66,9 +66,9 @@ document.onreadystatechange = function() {
         // will bother your website reading.
         var flightInterval = window.setInterval(
                 function() {
-                    // if (Math.random() > 0.5) {
+                    if (Math.random() > 0.8) {
                         flyBy(airplane)
-                // }
+                }
             },
             3000
         );
