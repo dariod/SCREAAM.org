@@ -15,7 +15,7 @@ $(window).bind('resizeEnd', function() {
         $("#airplane svg").height("94vh")
         $("#airplane").css("top","3vh")
     } else {
-        // If window is taller than wider, fir airplane width
+        // If window is taller than wider, fit airplane width
         $("#airplane svg").width("94vw")
         $("#airplane").css("top",(window.innerHeight - $("#airplane svg").height) / 2 + "px")
     }
