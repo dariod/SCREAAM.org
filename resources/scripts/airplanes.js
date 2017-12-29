@@ -13,8 +13,11 @@ function flyBy(airplane) {
     // Set up airplane initial position
     airplane.offset({
             left: document.body.clientWidth,
-            top: 50
         })
+
+    // Set the airplane SVG dimensions to fit the view
+    $("#airplane").css("top","3vh")
+    $("#airplane svg").height("94vh")
 
     // Make the plane visible (should be hidden on page load)
     airplane.css("visibility","visible")
