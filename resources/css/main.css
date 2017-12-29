@@ -1,4 +1,13 @@
-/*SCREAAM master style sheet*/
+/* SCREAAM master style sheet */
+
+/* latin */
+@font-face {
+  font-family: 'Zilla Slab Highlight Bold';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Zilla Slab Highlight'), local('ZillaSlabHighlight-Bold'), url(/resources/fonts/Zilla_Slab_Highlight/ZillaSlabHighlight-Bold.ttf);
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
 
 html {
     font-size: 16px;
@@ -19,18 +28,21 @@ header {
 }
 
 footer {
+    pointer-events: none;
     display: flex;
     position: fixed;;
-    height: 301px;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     bottom: 0;
     background: url("../images/San_Francisco@2x.png");
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
+    background-position: bottom left;
 }
 
 main {
     position: relative;
+    padding-top: 50px;
     margin-left: 25%;
     width: 50%;
 
@@ -38,10 +50,11 @@ main {
 
 h1 {
     font-size: 64px;
-    font-weight: bold;
-    font-family: sans-serif;
+    font-weight: 600;
+    font-family: 'Zilla Slab Highlight Bold';
     text-align: center;
     margin-bottom: 32px;
+    margin-top: 12px;
 }
 .h1-sub {
     font-size: 24px;
@@ -64,8 +77,17 @@ p {
     font-family: 18px;
     font-family: sans-serif;
     margin-top: 1rem;
+    line-height: 1.4;
 }
 
+ol {
+    list-style: decimal inside;
+}
+
+li {
+    text-indent: -1em;
+    padding-left: 1em;
+}
 
 #airplane {
     visibility: hidden;
@@ -82,6 +104,10 @@ p {
         margin-left: 10%;
         width: 80%;
     }
+
+    h1 {
+        font-size: 43px;
+    }
 }
 
 
@@ -90,13 +116,26 @@ p {
     main {
         position: relative;
         margin-left: 14%;
-        padding-top: 50px;
         padding-bottom: 130px;
         width: 72%;
     }
 
     h1 {
-        font-size: 40px;
+        font-size: 43px;
+    }
+
+}
+
+@media only screen and (max-width: 568px) {
+    main {
+        position: relative;
+        margin-left: 5%;
+        padding-bottom: 130px;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 42px;
     }
 
 }
