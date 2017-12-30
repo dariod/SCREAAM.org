@@ -10,6 +10,10 @@ $(window).resize(function() {
 
 
 $(window).bind('resizeEnd', function() {
+    fitPlane(airplane);
+});
+
+function fitPlane(airplane) {
     if ( window.innerWidth > window.innerHeight ) {
         // If window is wider than taller, fit airplane height
         $("#airplane svg").height("94vh")
@@ -19,7 +23,7 @@ $(window).bind('resizeEnd', function() {
         $("#airplane svg").width("94vw")
         $("#airplane").css("top",(window.innerHeight - $("#airplane svg").height) / 2 + "px")
     }
-});
+}
 
 // function flyBy(airplane, jetnoise) {
 function flyBy(airplane) {
@@ -35,17 +39,93 @@ function flyBy(airplane) {
             left: document.body.clientWidth,
         })
 
-    // Make the plane visible (should be hidden on page load)
-    airplane.css("visibility","visible")
+    // bufferSound
+    bufferSound()
 
     // Animate!
     airplane.animate({
         left: (-1 * airplane.width() )
     },{
         // duration: jetnoise.duration * 1000,
-        duration: 15000,
-        easing: "linear"
+        duration: webkitJetNoise.source.buffer.duration * 1000,
+        easing: "linear",
+        start: function () {
+                console.log("Animation start.")
+                // Make the plane visible (should be hidden on page load)
+                airplane.css("visibility","visible")
+                playSound(webkitJetNoise.source)
+            },
+        done: function () {
+                console.log("Animation stop.")
+                // Make the plane visible (should be hidden on page load)
+                airplane.css("visibility","hidden")
+            }
     })
+
+}
+
+// This is part of Safari sound handling
+
+var webkitJetNoise = {
+    audioContext: null,
+    buffer: null,
+    source: null
+}
+
+
+// progress on transfers from the server to the client (downloads)
+function updateProgress (oEvent) {
+  if (oEvent.lengthComputable) {
+    var percentComplete = oEvent.loaded / oEvent.total;
+    // ...
+  } else {
+    // Unable to compute progress information since the total size is unknown
+  }
+}
+
+function transferComplete(evt) {
+  console.log("The transfer is complete.");
+}
+
+function transferFailed(evt) {
+  console.log("An error occurred while transferring the file.");
+}
+
+function transferCanceled(evt) {
+  console.log("The transfer has been canceled by the user.");
+}
+
+function stashDownloadedSound(event) {
+    webkitJetNoise.buffer = event.target.response
+    console.log("The jet noise sound transfer is complete.")
+}
+
+function bufferSound() {
+    webkitJetNoise.source = webkitJetNoise.audioContext.createBufferSource()
+    webkitJetNoise.source.buffer = webkitJetNoise.audioContext.createBuffer(webkitJetNoise.buffer, false)
+    webkitJetNoise.source.connect(webkitJetNoise.audioContext.destination)
+}
+
+function playSound(source) {
+    source.start()
+}
+
+// Init sound for Safari
+if('webkitAudioContext' in window) {
+
+    webkitJetNoise.audioContext = new webkitAudioContext();
+
+
+    // Buffer the sound`
+    request = new XMLHttpRequest();
+    request.open('GET', '/resources/audio/jetNoise.mp3', true);
+    request.responseType = 'arraybuffer';
+    request.addEventListener('load', stashDownloadedSound, false);
+    // request.addEventListener("load", transferComplete);
+    request.addEventListener("progress", updateProgress);
+    request.addEventListener("error", transferFailed);
+    request.addEventListener("abort", transferCanceled);
+    request.send();
 
 }
 
@@ -57,16 +137,26 @@ document.onreadystatechange = function() {
 
         airplane=$("#airplane")
 
-        // Set the airplane SVG dimensions to some reasonable size
-        $("#airplane").css("top","3vh")
-        $("#airplane svg").height("94vh")
+        // Fit airplane to client window size.
+        // Will refit at every window resize.
+        fitPlane(airplane)
+
+        // The below does not work on Safari:
+        //
+        // jetNoise = document.createElement('audio');
+        // jetNoise.setAttribute('src', 'resources/audio/jetNoise.mp3');
+        // jetNoise.setAttribute('preload', 'auto');
+        // jetNoise.setAttribute('type', 'audio/mpeg')
+        // jetNoise.setAttribute('id', 'jetnoise');
+
+
 
         // Set up randomly timed fly bys
         // Every so much time, we roll a dice and see if a jet airplane
         // will bother your website reading.
         var flightInterval = window.setInterval(
                 function() {
-                    if (Math.random() > 0.8) {
+                    if (Math.random() > 0.4) {
                         flyBy(airplane)
                 }
             },
