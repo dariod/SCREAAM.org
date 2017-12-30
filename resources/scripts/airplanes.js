@@ -118,7 +118,7 @@ if('webkitAudioContext' in window) {
 
     // Buffer the sound`
     request = new XMLHttpRequest();
-    request.open('GET', '/resources/audio/jetNoise.mp3', true);
+    request.open('GET', 'https://github.com/dariod/SCREAAM.org/blob/gh-pages/resources/audio/jetNoise.mp3?raw=true', true);
     request.responseType = 'arraybuffer';
     request.addEventListener('load', stashDownloadedSound, false);
     // request.addEventListener("load", transferComplete);
